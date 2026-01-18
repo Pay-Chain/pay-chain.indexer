@@ -15,7 +15,20 @@ export default createConfig({
         },
     },
     contracts: {
-        PayChain: {
+        PayChainCCIP: {
+            network: {
+                baseSepolia: {
+                    address: "0x0000000000000000000000000000000000000000", // TODO: Update after deployment
+                    startBlock: 0,
+                },
+                bscSepolia: {
+                    address: "0x0000000000000000000000000000000000000000", // TODO: Update after deployment
+                    startBlock: 0,
+                },
+            },
+            abi: PayChainAbi,
+        },
+        PayChainHyperbridge: {
             network: {
                 baseSepolia: {
                     address: "0x0000000000000000000000000000000000000000", // TODO: Update after deployment

@@ -29,6 +29,22 @@ export const paymentEvents = onchainTable("payment_events", (t) => ({
     timestamp: t.bigint().notNull(),
 }));
 
+export const paymentRequests = onchainTable("payment_requests", (t) => ({
+    id: t.text().primaryKey(), // requestId
+    merchant: t.hex().notNull(),
+    receiver: t.hex().notNull(),
+    token: t.hex().notNull(),
+    amount: t.bigint().notNull(),
+    description: t.text(),
+    expiresAt: t.bigint().notNull(),
+    isPaid: t.boolean().notNull(),
+    payer: t.hex(),
+    paymentId: t.hex(), // ID of the cross-chain payment if linked
+    txHash: t.hex().notNull(),
+    createdAt: t.bigint().notNull(),
+    updatedAt: t.bigint().notNull(),
+}));
+
 export const tokenSupport = onchainTable("token_support", (t) => ({
     id: t.text().primaryKey(),
     chainId: t.text().notNull(),
@@ -36,3 +52,4 @@ export const tokenSupport = onchainTable("token_support", (t) => ({
     supported: t.boolean().notNull(),
     updatedAt: t.bigint().notNull(),
 }));
+

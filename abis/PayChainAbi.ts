@@ -19,7 +19,7 @@ export const PayChainAbi = [
         name: "PaymentExecuted",
         inputs: [
             { name: "paymentId", type: "bytes32", indexed: true },
-            { name: "ccipMessageId", type: "bytes32", indexed: false },
+            { name: "messageId", type: "bytes32", indexed: false },
         ],
     },
     {
@@ -40,10 +40,41 @@ export const PayChainAbi = [
     },
     {
         type: "event",
+        name: "PaymentRequestCreated",
+        inputs: [
+            { name: "requestId", type: "bytes32", indexed: true },
+            { name: "merchant", type: "address", indexed: true },
+            { name: "receiver", type: "address", indexed: true },
+            { name: "token", type: "address", indexed: false },
+            { name: "amount", type: "uint256", indexed: false },
+            { name: "expiresAt", type: "uint256", indexed: false },
+        ],
+    },
+    {
+        type: "event",
+        name: "RequestPaymentReceived",
+        inputs: [
+            { name: "requestId", type: "bytes32", indexed: true },
+            { name: "payer", type: "address", indexed: true },
+            { name: "receiver", type: "address", indexed: true },
+            { name: "token", type: "address", indexed: false },
+            { name: "amount", type: "uint256", indexed: false },
+        ],
+    },
+    {
+        type: "event",
         name: "TokenSupportUpdated",
         inputs: [
             { name: "token", type: "address", indexed: false },
             { name: "supported", type: "bool", indexed: false },
+        ],
+    },
+    {
+        type: "event",
+        name: "ChainSelectorUpdated",
+        inputs: [
+            { name: "chainId", type: "string", indexed: false },
+            { name: "selector", type: "uint64", indexed: false },
         ],
     },
     {
@@ -54,4 +85,12 @@ export const PayChainAbi = [
             { name: "supported", type: "bool", indexed: false },
         ],
     },
+    {
+        type: "event",
+        name: "DestinationContractUpdated",
+        inputs: [
+            { name: "destination", type: "address", indexed: false },
+        ],
+    },
 ] as const;
+
